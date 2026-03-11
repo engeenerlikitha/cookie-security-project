@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookie Lab | Generator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --neon-green: #00ff41;
+            --bg-dark: #0a0a0a;
+            --glass: rgba(255, 255, 255, 0.05);
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--neon-green);
+            font-family: 'Fira Code', monospace;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        /* Scanline Effect */
+        body::before {
+            content: " ";
+            position: absolute;
+            top: 0; left: 0; bottom: 0; right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), 
+                        linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            background-size: 100% 2px, 3px 100%;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        .lab-container {
+            text-align: center;
+            padding: 3rem;
+            border: 1px solid var(--neon-green);
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 0 30px rgba(0, 255, 65, 0.2);
+            max-width: 500px;
+            width: 90%;
+        }
+
+        .cookie-core {
+            font-size: 80px;
+            margin-bottom: 20px;
+            display: inline-block;
+            animation: pulse 2s infinite ease-in-out;
+            filter: drop-shadow(0 0 15px var(--neon-green));
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.1); opacity: 1; }
+            100% { transform: scale(1); opacity: 0.8; }
+        }
+
+        .status-box {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: left;
+            margin-top: 25px;
+            font-size: 0.85rem;
+            border-left: 3px solid var(--neon-green);
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 10px;
+            height: 18px;
+            background: var(--neon-green);
+            animation: blink 0.8s infinite;
+            vertical-align: middle;
+        }
+
+        @keyframes blink { 50% { opacity: 0; } }
+
+        .target-url {
+            color: #fff;
+            background: #222;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-weight: bold;
+            display: block;
+            margin-top: 10px;
+            border: 1px dashed var(--neon-green);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="lab-container">
+        <div class="cookie-core">🍪</div>
+        <h1 style="letter-spacing: 2px;">COOKIE LAB ACTIVE</h1>
+        <p style="opacity: 0.8;">Target Server for Privacy Audits</p>
+
+        <div class="status-box">
+            <div>> INJECTING: auth_v1_secure... [OK]</div>
+            <div>> ENCRYPTING: user_pref_payload... [OK]</div>
+            <div>> STATUS: 10 Cookies Planted <span class="cursor"></span></div>
+        </div>
+
+        <div style="margin-top: 30px;">
+            <small style="color: #888;">ANALYZE THIS ENDPOINT:</small>
+            <code class="target-url">http://127.0.0.1:5001</code>
+        </div>
+    </div>
+
+</body>
+</html>
